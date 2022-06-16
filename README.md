@@ -12,6 +12,7 @@ Control pishock via your avatar expression menu.
 - Websocket support for pishock plus users
 - Clean up code by learning more about python
 - Verbose output, perferably toggable via the avatar menu
+- Learn [animator as code](https://github.com/hai-vr/av3-animator-as-code/tree/driver-copy) to help with creating animators when adding the prefab to an avatar
 
 # Assets used
 - Smart watch made by [vibhavsuthar1998](https://www.cgtrader.com/vibhavsuthar1998) rebuilt by me from [here](https://www.cgtrader.com/free-3d-models/industrial/other/smart-watch-1c785218-a560-4d7e-8478-f9de27312be8)
