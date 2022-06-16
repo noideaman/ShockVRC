@@ -4,23 +4,50 @@ import requests
 import asyncio
 import json
 
-#change these values
+#####################
+#change these values#
+#####################
 APIKEY="ChangeMe"
-SHARECODE="ChangeMe"
 USERNAME="ChangeMe"
 NAME="vrcosc"
-#change to True to see http responses
-verbose="0"
-#dont touch below
+#multi target (remote users/pets)
+pets=["ChangeMe", "ChangeMe", "ChangeMe"]
+#multi target (local user touch point)
+touchpoints=["ChangeMe", "ChangeMe", "ChangeMe"]
+######################
+# Don't change Below #
+######################
+
+
+
+verbose=0
 funtype="2"
 fundelaymax="10"
 fundelaymin="0"
 funduration="15"
 funintensity="0"
+funtouchpointstate="False"
 boolsend='False'
 typesend="beep"
 
-def set_type(adress, *args):
+
+def set_verbose(address, *args):
+    piverbose=str({args})
+    cleanverbose=''.join((x for x in piverbose if x.isdigit()))
+    global verbose
+    verbose=int(cleanverbose)
+
+#Pet functions
+def set_target(address, *args):
+    global funtarget
+    global pets
+    pitarget=str({args})
+    cleantarget=''.join((x for x in pitarget if x.isdigit()))
+    arratarget=int(cleantarget)
+    funtarget=pets[arratarget]
+    print(f"target set to {funtarget}")
+    
+def set_pet_type(adress, *args):
     pitype=str({args})
     global funtype
     global typesend
@@ -32,11 +59,10 @@ def set_type(adress, *args):
         typesend="vibrate"
     if funtype == '2':
         typesend="beep"
-    if verbose == "1":
-        print(funtype)
-    
 
-def set_intensity(address, *args):
+    print(funtype)
+
+def set_pet_intensity(address, *args):
     piintensity=str({args})
     global funintensity
     global verbose
@@ -44,10 +70,10 @@ def set_intensity(address, *args):
     floatintensity=float(tempintensity)
     intensity=floatintensity*100
     funintensity=int(intensity)
-    if verbose == "1":
-        print(funintensity)
 
-def set_duration(address, *args):
+    print(funintensity)
+
+def set_pet_duration(address, *args):
     piduration=str({args})
     global funduration
     global verbose
@@ -55,22 +81,88 @@ def set_duration(address, *args):
     floatduration=float(cleanduration)
     time=floatduration*15
     funduration=int(time)
-    if verbose == "1":
-        print(piduration)
-    
-def set_state(address:str, *args) -> None:
+
+    print(funduration)
+    print(cleanduration)
+
+def set_pet_state(address:str, *args) -> None:
     global boolsend
     global verbose
     booltest=str({args})
     boolsend= ''.join((x for x in booltest if x.isalpha()))
-    if verbose == "1":
-        print(boolsend)
+
+    print(boolsend)
+    
+#TouchPointFunctions
+def set_touchpoint(address, *args):
+    global funtouchpoint
+    global funtouchpointstate
+    pitouchpointstate=str({args})
+    cleantouchpointstate=''.join((x for x in pitouchpointstate if x.isalpha()))
+    if cleantouchpointstate == "True":
+        pitouchpoint=str({address})
+        cleantouchpoint=''.join((x for x in pitouchpoint if x.isdigit()))
+        touchpointtarget=int(cleantouchpoint)
+        funtouchpoint=touchpoints[touchpointtarget]
+        funtouchpointstate=cleantouchpointstate
+    if cleantouchpointstate == "False":
+        funtouchpointstate=cleantouchpointstate
+    
+    print(funtouchpoint)
+    print(funtouchpointstate)
+
+def set_TP_type(adress, *args):
+    piTPtype=str({args})
+    global funTPtype
+    global typeTPsend
+    global verbose
+    funTPtype= ''.join((x for x in piTPtype if x.isdigit()))
+    if funTPtype == '0':
+        typeTPsend="shock"
+    if funTPtype == '1':
+        typeTPsend="vibrate"
+    if funTPtype == '2':
+        typeTPsend="beep"
+
+    print(funTPtype)
+
+def set_TP_intensity(address, *args):
+    piTPintensity=str({args})
+    global funTPintensity
+    global verbose
+    tempTPintensity=str(piTPintensity.strip("{()},")[:4])
+    floatTPintensity=float(tempTPintensity)
+    TPintensity=floatTPintensity*100
+    funTPintensity=int(TPintensity)
+
+    print(funTPintensity)
+
+def set_TP_duration(address, *args):
+    piTPduration=str({args})
+    global funTPduration
+    global verbose
+    cleanTPduration=str(piTPduration.strip("{()},")[:4])
+    floatTPduration=float(cleanTPduration)
+    TPtime=floatTPduration*15
+    funTPduration=int(TPtime)
+    
+    print(cleanTPduration)
+    print(funTPduration)
 
 dispatcher = Dispatcher()
-funtype=dispatcher.map("/avatar/parameters/pishock/Type", set_type)
-funintensity=dispatcher.map("/avatar/parameters/pishock/Intensity", set_intensity)
-funduration=dispatcher.map("/avatar/parameters/pishock/Duration", set_duration)
-dispatcher.map("/avatar/parameters/pishock/Shock", set_state)
+#dispatchers for pet functions
+dispatcher.map("/avatar/parameters/pishock/Type", set_pet_type)
+dispatcher.map("/avatar/parameters/pishock/Intensity", set_pet_intensity)
+dispatcher.map("/avatar/parameters/pishock/Duration", set_pet_duration)
+dispatcher.map("/avatar/parameters/pishock/Shock", set_pet_state)
+dispatcher.map("/avatar/parameters/pishock/Target", set_target)
+#dispatchers for touchpoint functions
+dispatcher.map("/avatar/parameters/pishock/TPType", set_TP_type)
+dispatcher.map("/avatar/parameters/pishock/TPIntensity", set_TP_intensity)
+dispatcher.map("/avatar/parameters/pishock/TPDuration", set_TP_duration)
+dispatcher.map("/avatar/parameters/pishock/Touchpoint_*", set_touchpoint)
+#verbose functions
+dispatcher.map("/avatar/parameters/pishock/Debug", set_verbose)
 
 
 ip = "127.0.0.1"
@@ -88,15 +180,37 @@ async def loop():
     global SHARECODE
     global APIKEY
     global typesend
+    global funtarget
+    global funtouchpoint
+    global typeTPsend
+    global funTPtype
+    global funTPduration
+    global funTPintensity
     await asyncio.sleep(0.1)
     if boolsend == 'True':
-        sleeptime=funduration+1.1
+        sleeptime=funduration+1.7
         print(f"sending {typesend} at {funintensity} for {funduration} seconds")
-        datajson = str({"Username":USERNAME,"Name":NAME,"Code":SHARECODE,"Intensity":funintensity,"Duration":funduration,"Apikey":APIKEY,"Op":funtype})
+        datajson = str({"Username":USERNAME,"Name":NAME,"Code":funtarget,"Intensity":funintensity,"Duration":funduration,"Apikey":APIKEY,"Op":funtype})
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
         sendrequest=requests.post('https://do.pishock.com/api/apioperate', data=datajson, headers=headers)
-        if verbose == "1":
-            print(sendrequest)
+        
+        print(f"waiting {sleeptime} before next command")
+        #print(sendrequest)
+        print (sendrequest.text)
+        
+        await asyncio.sleep(sleeptime)
+            
+    if funtouchpointstate == 'True':
+        sleeptime=funTPduration+1.7
+        print(f"touch point sending {typeTPsend} at {funTPintensity} for {funTPduration} seconds")
+        datajson = str({"Username":USERNAME,"Name":NAME,"Code":funtouchpoint,"Intensity":funTPintensity,"Duration":funTPduration,"Apikey":APIKEY,"Op":funTPtype})
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        sendrequest=requests.post('https://do.pishock.com/api/apioperate', data=datajson, headers=headers)
+        
+        print(f"waiting {sleeptime} before next command")
+        #print(sendrequest)
+        print (sendrequest.text)
+        
         await asyncio.sleep(sleeptime)
 
 
