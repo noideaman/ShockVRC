@@ -45,7 +45,7 @@ def set_target(address, *args):
     cleantarget=''.join((x for x in pitarget if x.isdigit()))
     arratarget=int(cleantarget)
     funtarget=pets[arratarget]
-    print(f"target set to {funtarget}")
+    #print(f"target set to {funtarget}")
     
 def set_pet_type(adress, *args):
     pitype=str({args})
@@ -60,7 +60,7 @@ def set_pet_type(adress, *args):
     if funtype == '2':
         typesend="beep"
 
-    print(funtype)
+    #print(funtype)
 
 def set_pet_intensity(address, *args):
     piintensity=str({args})
@@ -71,7 +71,7 @@ def set_pet_intensity(address, *args):
     intensity=floatintensity*100
     funintensity=int(intensity)
 
-    print(funintensity)
+    #print(funintensity)
 
 def set_pet_duration(address, *args):
     piduration=str({args})
@@ -82,8 +82,8 @@ def set_pet_duration(address, *args):
     time=floatduration*15
     funduration=int(time)
 
-    print(funduration)
-    print(cleanduration)
+   #print(funduration)
+   #print(cleanduration)
 
 def set_pet_state(address:str, *args) -> None:
     global boolsend
@@ -91,7 +91,7 @@ def set_pet_state(address:str, *args) -> None:
     booltest=str({args})
     boolsend= ''.join((x for x in booltest if x.isalpha()))
 
-    print(boolsend)
+   #print(boolsend)
     
 #TouchPointFunctions
 def set_touchpoint(address, *args):
@@ -108,8 +108,8 @@ def set_touchpoint(address, *args):
     if cleantouchpointstate == "False":
         funtouchpointstate=cleantouchpointstate
     
-    print(funtouchpoint)
-    print(funtouchpointstate)
+   #print(funtouchpoint)
+   #print(funtouchpointstate)
 
 def set_TP_type(adress, *args):
     piTPtype=str({args})
@@ -124,7 +124,7 @@ def set_TP_type(adress, *args):
     if funTPtype == '2':
         typeTPsend="beep"
 
-    print(funTPtype)
+   #print(funTPtype)
 
 def set_TP_intensity(address, *args):
     piTPintensity=str({args})
@@ -135,7 +135,7 @@ def set_TP_intensity(address, *args):
     TPintensity=floatTPintensity*100
     funTPintensity=int(TPintensity)
 
-    print(funTPintensity)
+   #print(funTPintensity)
 
 def set_TP_duration(address, *args):
     piTPduration=str({args})
@@ -146,8 +146,8 @@ def set_TP_duration(address, *args):
     TPtime=floatTPduration*15
     funTPduration=int(TPtime)
     
-    print(cleanTPduration)
-    print(funTPduration)
+   #print(cleanTPduration)
+   #print(funTPduration)
 
 dispatcher = Dispatcher()
 #dispatchers for pet functions
