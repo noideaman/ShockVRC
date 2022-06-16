@@ -6,11 +6,12 @@ Control pishock via your avatar expression menu.
 - value settings (Type,Duration,Intensity)
 - Pretty watch to confirm values set
 - Basic interface as starting point to create your own
-- more than one device support for multi target/touch points
+- More than one device support for multi target/touch points
 
 # TODO
-- websocket support for pishock plus users
-- clean up code by learning more about python
+- Websocket support for pishock plus users
+- Clean up code by learning more about python
+- Verbose output, perferably toggable via the avatar menu
 
 # Assets used
 - Smart watch made by [vibhavsuthar1998](https://www.cgtrader.com/vibhavsuthar1998) rebuilt by me from [here](https://www.cgtrader.com/free-3d-models/industrial/other/smart-watch-1c785218-a560-4d7e-8478-f9de27312be8)
