@@ -6,10 +6,10 @@ Control pishock via your avatar expression menu.
 - value settings (Type,Duration,Intensity)
 - Pretty watch to confirm values set
 - Basic interface as starting point to create your own
+- more than one device support for multi target/touch points
 
 #TODO
 - websocket support for pishock plus users
-- more than one device support for multi target/touch points
 - clean up code by learning more about python
 
 #Assets used
