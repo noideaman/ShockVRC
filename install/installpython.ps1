@@ -10,3 +10,4 @@ cd .\python
 cd .\scripts
 ./pip.exe install requests --no-warn-script-location
 ./pip.exe install python-osc --no-warn-script-location
+./pip.exe install configparser --no-warn-script-location
