@@ -1,22 +1,18 @@
 from pythonosc.osc_server import AsyncIOOSCUDPServer
 from pythonosc.dispatcher import Dispatcher
+from configparser import ConfigParser
 import requests
 import asyncio
 import json
 
-#####################
-#change these values#
-#####################
-APIKEY="ChangeMe"
-USERNAME="ChangeMe"
-NAME="vrcosc"
-#multi target (remote users/pets)
-pets=["ChangeMe", "ChangeMe", "ChangeMe"]
-#multi target (local user touch point)
-touchpoints=["ChangeMe", "ChangeMe", "ChangeMe"]
-######################
-# Don't change Below #
-######################
+config=ConfigParser()
+config.read('pishock.cfg')
+
+APIKEY=config['API']['APITOKEN']
+USERNAME=config['API']['USERNAME']
+NAME=config['API']['APPNAME']
+pets=config['PETS']['PETS'].split()
+touchpoints=config['TOUCHPOINTS']['TOUCHPOINTS'].split()
 
 
 
@@ -46,7 +42,7 @@ def set_target(address, *args):
     arratarget=int(cleantarget)
     funtarget=pets[arratarget]
     #print(f"target set to {funtarget}")
-    
+
 def set_pet_type(adress, *args):
     pitype=str({args})
     global funtype
@@ -81,9 +77,8 @@ def set_pet_duration(address, *args):
     floatduration=float(cleanduration)
     time=floatduration*15
     funduration=int(time)
-
-   #print(funduration)
-   #print(cleanduration)
+    #print(funduration)
+    #print(cleanduration)
 
 def set_pet_state(address:str, *args) -> None:
     global boolsend
@@ -91,8 +86,8 @@ def set_pet_state(address:str, *args) -> None:
     booltest=str({args})
     boolsend= ''.join((x for x in booltest if x.isalpha()))
 
-   #print(boolsend)
-    
+    #print(boolsend)
+
 #TouchPointFunctions
 def set_touchpoint(address, *args):
     global funtouchpoint
@@ -107,9 +102,9 @@ def set_touchpoint(address, *args):
         funtouchpointstate=cleantouchpointstate
     if cleantouchpointstate == "False":
         funtouchpointstate=cleantouchpointstate
-    
-   #print(funtouchpoint)
-   #print(funtouchpointstate)
+
+    #print(funtouchpoint)
+    #print(funtouchpointstate)
 
 def set_TP_type(adress, *args):
     piTPtype=str({args})
@@ -124,7 +119,7 @@ def set_TP_type(adress, *args):
     if funTPtype == '2':
         typeTPsend="beep"
 
-   #print(funTPtype)
+    #print(funTPtype)
 
 def set_TP_intensity(address, *args):
     piTPintensity=str({args})
@@ -135,7 +130,7 @@ def set_TP_intensity(address, *args):
     TPintensity=floatTPintensity*100
     funTPintensity=int(TPintensity)
 
-   #print(funTPintensity)
+    #print(funTPintensity)
 
 def set_TP_duration(address, *args):
     piTPduration=str({args})
@@ -145,9 +140,9 @@ def set_TP_duration(address, *args):
     floatTPduration=float(cleanTPduration)
     TPtime=floatTPduration*15
     funTPduration=int(TPtime)
-    
-   #print(cleanTPduration)
-   #print(funTPduration)
+
+    #print(cleanTPduration)
+    #print(funTPduration)
 
 dispatcher = Dispatcher()
 #dispatchers for pet functions
@@ -193,24 +188,24 @@ async def loop():
         datajson = str({"Username":USERNAME,"Name":NAME,"Code":funtarget,"Intensity":funintensity,"Duration":funduration,"Apikey":APIKEY,"Op":funtype})
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
         sendrequest=requests.post('https://do.pishock.com/api/apioperate', data=datajson, headers=headers)
-        
+
         print(f"waiting {sleeptime} before next command")
         #print(sendrequest)
-        print (sendrequest.text)
-        
+        #print (sendrequest.text)
+
         await asyncio.sleep(sleeptime)
-            
+
     if funtouchpointstate == 'True':
         sleeptime=funTPduration+1.7
         print(f"touch point sending {typeTPsend} at {funTPintensity} for {funTPduration} seconds")
         datajson = str({"Username":USERNAME,"Name":NAME,"Code":funtouchpoint,"Intensity":funTPintensity,"Duration":funTPduration,"Apikey":APIKEY,"Op":funTPtype})
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
         sendrequest=requests.post('https://do.pishock.com/api/apioperate', data=datajson, headers=headers)
-        
+
         print(f"waiting {sleeptime} before next command")
         #print(sendrequest)
-        print (sendrequest.text)
-        
+        #print (sendrequest.text)
+
         await asyncio.sleep(sleeptime)
 
 

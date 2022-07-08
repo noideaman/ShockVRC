@@ -1,0 +1,17 @@
+[API]
+APITOKEN = apitoken
+USERNAME = username
+APPNAME = VRCOSCSHOCK
+
+[PETS]
+PETS =
+      code1
+      code2
+      code3
+
+
+[TOUCHPOINTS]
+TOUCHPOINTS =
+             code1
+             code2
+             code3
