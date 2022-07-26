@@ -1,6 +1,9 @@
 # PiShockBand-VRC
 Control pishock via your avatar expression menu.
 
+# Install
+- Head to the [wiki](https://github.com/noideaman/PiShockBand-VRC/wiki), It contains guides for each part (wrist watch, avatar menu, and touch points)
+
 # Features
 - Physbone Contact Reciver support
 - value settings (Type,Duration,Intensity)
