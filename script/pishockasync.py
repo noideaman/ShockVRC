@@ -101,7 +101,7 @@ def set_TP_duration(address, *args):
 dispatcher = Dispatcher()
 # Dispatchers for pet functions
 dispatcher.map("/avatar/parameters/pishock/Type", set_pet_type)
-dispatcher.map("/avatar/parameters/pishock/Intensity", set_pet_intensity
+dispatcher.map("/avatar/parameters/pishock/Intensity", set_pet_intensity)
 dispatcher.map("/avatar/parameters/pishock/Duration", set_pet_duration)
 dispatcher.map("/avatar/parameters/pishock/Shock", set_pet_state)
 dispatcher.map("/avatar/parameters/pishock/Target", set_target)

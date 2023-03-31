@@ -4,6 +4,9 @@ Invoke-WebRequest "https://www.python.org/ftp/python/3.10.5/python-3.10.5-embed-
 # Extract the downloaded zip file
 Expand-Archive -Path .\python.zip -DestinationPath .\python -Verbose
 
+# Clean up the now unneeded zip file.
+Remove-Item .\python.zip
+
 # Modify the python310._pth file to enable 'site' module
 $file = '.\python\python310._pth'
 $find = '#import site'
@@ -26,6 +29,7 @@ Set-Location .\scripts
 ./pip.exe install requests --no-warn-script-location
 ./pip.exe install python-osc --no-warn-script-location
 ./pip.exe install configparser --no-warn-script-location
+./pip.exe install PySimpleGUI --no-warn-script-location
 
 # Change back to the root directory
 Set-Location ..
