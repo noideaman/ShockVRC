@@ -29,7 +29,8 @@ Set-Location .\scripts
 ./pip.exe install requests --no-warn-script-location
 ./pip.exe install python-osc --no-warn-script-location
 ./pip.exe install configparser --no-warn-script-location
-./pip.exe install PySimpleGUI --no-warn-script-location
+./pip.exe install PyQt5 --no-warn-script-location
+./pip.exe install PySimpleGUIQt --no-warn-script-location
 
 # Change back to the root directory
 Set-Location ..

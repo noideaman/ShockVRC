@@ -4,9 +4,61 @@ from configparser import ConfigParser
 import requests
 import asyncio
 import json
+import os
+import PySimpleGUIQt as sg
+
+config_file = 'pishock.cfg'
+
+def setup_wizard():
+    config = ConfigParser()
+
+    layout = [
+        [sg.Text("Please enter your API token (default: <empty>):"), sg.InputText(key="api_token")],
+        [sg.Text("Please enter your username (default: user):"), sg.InputText(default_text="user", key="username")],
+        [sg.Text("Please enter your application name (default: MyApp):"), sg.InputText(default_text="MyApp", key="app_name")],
+        [sg.Text("Please enter the pets you want to control (comma-separated, default: pet1):"), sg.InputText(default_text="pet1", key="pets")],
+        [sg.Text("Please enter the touch points you want to add to your avatar (comma-separated, default: tp1):"), sg.InputText(default_text="tp1", key="touchpoints")],
+        [sg.Button("Submit"), sg.Button("Cancel")]
+    ]
+
+    window = sg.Window("Setup Wizard", layout)
+
+    while True:
+        event, values = window.read()
+        if event == "Submit":
+            break
+        elif event == sg.WIN_CLOSED or event == "Cancel":
+            window.close()
+            return
+
+    window.close()
+
+    config['API'] = {
+        'APITOKEN': values['api_token'],
+        'USERNAME': values['username'],
+        'APPNAME': values['app_name']
+    }
+
+    config['PETS'] = {
+        'PETS': values['pets']
+    }
+
+    config['TOUCHPOINTS'] = {
+        'TOUCHPOINTS': values['touchpoints']
+    }
+
+    # Save the configuration to the file
+    with open(config_file, 'w') as f:
+        config.write(f)
+
+    print("Configuration saved to", config_file)
+
+# Check if the configuration file exists
+if not os.path.exists(config_file):
+    setup_wizard()
 
 config = ConfigParser()
-config.read('pishock.cfg')
+config.read(config_file)
 
 API_KEY = config['API']['APITOKEN']
 USERNAME = config['API']['USERNAME']
