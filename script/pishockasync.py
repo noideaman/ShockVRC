@@ -13,15 +13,17 @@ def setup_wizard():
     config = ConfigParser()
 
     layout = [
-        [sg.Text("Please enter your API token (default: <empty>):"), sg.InputText(key="api_token")],
-        [sg.Text("Please enter your username (default: user):"), sg.InputText(default_text="user", key="username")],
-        [sg.Text("Please enter your application name (default: MyApp):"), sg.InputText(default_text="MyApp", key="app_name")],
-        [sg.Text("Please enter the pets you want to control (comma-separated, default: pet1):"), sg.InputText(default_text="pet1", key="pets")],
-        [sg.Text("Please enter the touch points you want to add to your avatar (comma-separated, default: tp1):"), sg.InputText(default_text="tp1", key="touchpoints")],
-        [sg.Button("Submit"), sg.Button("Cancel")]
+        [sg.Column([[sg.Text("Setup Wizard", font=("Helvetica", 18), justification="center", size=(40, 1))]])],
+        [sg.Text("API Token (default: <empty>):", size=(30, 1)), sg.InputText(key="api_token")],
+        [sg.Text("Username (default: user):", size=(30, 1)), sg.InputText(default_text="user", key="username")],
+        [sg.Text("Application Name (default: MyApp):", size=(30, 1)), sg.InputText(default_text="MyApp", key="app_name")],
+        [sg.Text("Pets (comma-separated, default: pet1):", size=(30, 1)), sg.InputText(default_text="pet1", key="pets")],
+        [sg.Text("Touch Points (comma-separated, default: tp1):", size=(30, 1)), sg.InputText(default_text="tp1", key="touchpoints")],
+        [sg.Button("Submit", size=(10, 1), button_color=("white", "green")), sg.Button("Cancel", size=(10, 1), button_color=("white", "red"))]
     ]
 
-    window = sg.Window("Setup Wizard", layout)
+    window = sg.Window("Setup Wizard", layout, element_justification="center")
+
 
     while True:
         event, values = window.read()
