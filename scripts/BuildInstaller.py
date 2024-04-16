@@ -35,7 +35,7 @@ directory_table = [
 msi_data = {
     "Directory": directory_table,
     "ProgId": [
-        ("Prog.Id", "2.1.2", None, "VRChat OSC tool to move the player in the direction of a stretched Physbone", "IconId", None),
+        ("Prog.Id", "v0.7", None, "VRChat OSC tool to control pishock shock collars", "IconId", None),
     ],
     "Icon": [
         ("IconId", "Resources\VRChatpishock.ico"),
