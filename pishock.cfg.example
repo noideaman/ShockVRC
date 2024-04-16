@@ -15,3 +15,6 @@ TOUCHPOINTS =
              code1
              code2
              code3
+[Settings]
+IP = 127.0.0.1
+Port = 9001

@@ -159,10 +159,8 @@ dispatcher.map("/avatar/parameters/pishock/Touchpoint_*", set_touchpoint)
 #verbose functions
 dispatcher.map("/avatar/parameters/pishock/Debug", set_verbose)
 
-
-ip = "127.0.0.1"
-port = 9001
-
+ip=config['Settings']['IP']
+port=config['Settings']['Port']
 
 async def loop():
     global boolsend
