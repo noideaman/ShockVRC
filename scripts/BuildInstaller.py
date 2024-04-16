@@ -3,7 +3,8 @@ from cx_Freeze import setup, Executable
 #Update version numbers on new releases.
 
 # Dependencies are automatically detected.
-build_options = {'packages': [], 'excludes': []}
+build_options = {'packages': [], 'excludes': [], "include_files" : ["pishock.cfg.example"]}
+
 
 base = 'console'
 
@@ -48,7 +49,7 @@ bdist_msi_options = {
     "add_to_path": False,
     "data": msi_data,
     #dont change  this, this tells windows what version to remove when performing an upgrade
-    "upgrade_code": "{111834E6-DD67-4BD9-A402-A38A8424C39E}",
+    "upgrade_code": "{2787f9ec-f25c-46ee-bf9b-6d4983747575}",
     #this changes the icon in Add/Remove programs, sadly not the MSI it'self
     "install_icon":  "Resources\VRChatpishock.ico",
     #update the details tab in the MSI properties, these are the only values alloted
