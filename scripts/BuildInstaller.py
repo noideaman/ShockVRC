@@ -13,14 +13,14 @@ executables = [
     #Desktop ShortCut
     Executable('pishockasync.py', 
     base=base,
-    shortcut_name="ShockOSC",
+    shortcut_name="ShockVRC",
     shortcut_dir="DesktopFolder",
     icon="Resources\VRChatpishock.ico",
     ),
     #StartMenu ShortCut
     Executable('pishockasync.py', 
     base=base,
-    shortcut_name="ShockOSC",
+    shortcut_name="ShockVRC",
     shortcut_dir="MyProgramMenu",
     icon="Resources\VRChatpishock.ico",
     ),
@@ -55,13 +55,13 @@ bdist_msi_options = {
     #update the details tab in the MSI properties, these are the only values alloted
     "summary_data": {
         "author": "Various Authors",
-        "comments": "https://github.com/noideaman/ShockOSC/releases",
+        "comments": "https://github.com/noideaman/ShockVRC/releases",
         "keywords": "VRChat, OSC, shock, pishock",
     },
 }
 
 # Setting for the EXE, and options for python setup.py <options>
-setup(name='ShockOSC',
+setup(name='ShockVRC',
       version = 'v0.7',
       description = 'VRChat OSC tool to move the player in the direction of a stretched Physbone',
       license = "GPL-2.0",
