@@ -1,8 +1,9 @@
-# PiShockBand-VRC
-Control pishock via your avatar expression menu.
+# ShockOSC
+Control pishock/OpenShock(wip) via your avatar expression menu.
 
 # Install
-- Head to the [wiki](https://github.com/noideaman/PiShockBand-VRC/wiki), It contains guides for each part (wrist watch, avatar menu, and touch points)
+- Head to the [wiki](https://github.com/noideaman/ShockOSC/wiki), It contains guides for each part (wrist watch, avatar menu, and touch points)
+- Working on wiki updates
 
 # Features
 - Physbone Contact Reciver support
