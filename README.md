@@ -1,8 +1,8 @@
-# ShockOSC
+# ShockVRC
 Control pishock/OpenShock(wip) via your avatar expression menu.
 
 # Install
-- Head to the [wiki](https://github.com/noideaman/ShockOSC/wiki), It contains guides for each part (wrist watch, avatar menu, and touch points)
+- Head to the [wiki](https://github.com/noideaman/ShockVRC/wiki), It contains guides for each part (wrist watch, avatar menu, and touch points)
 - Working on wiki updates
 
 # Features
