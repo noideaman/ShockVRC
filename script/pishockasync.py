@@ -17,14 +17,18 @@ touchpoints=config['TOUCHPOINTS']['TOUCHPOINTS'].split()
 
 
 verbose=0
-funtype="2"
-fundelaymax="10"
-fundelaymin="0"
-funduration="15"
-funintensity="0"
+funtype=2
+fundelaymax=10
+fundelaymin=0
+funduration=0.0
+funintensity=0
 funtouchpointstate="False"
 boolsend='False'
 typesend="beep"
+funtarget=0
+typeTPsend=2
+funTPintensity=0
+funTPduration=0.0
 
 
 def set_verbose(address, *args):
@@ -181,18 +185,20 @@ async def loop():
     global funTPduration
     global funTPintensity
     
-    # set default values if not set
-    funtype = 3 if funtype is None else funtype
-    funduration = 0 if funduration is None else funduration
-    funintensity = 0 if funintensity is None else funintensity
-    funtarget = 0 if funtarget is None else funtarget
-    funTPtype = 3 if funTPtype is None else funTPtype
-    funTPduration = 0 if funTPduration is None else funTPduration
-    funTPintensity = 0 if funTPintensity is None else funTPintensity
     
     await asyncio.sleep(0.1)
+    
+    # set default values if not set
+    #funtype = 3 if funtype is None else funtype
+    #funduration = 0.0 if funduration is None else funduration
+    #funintensity = 0 if funintensity is None else funintensity
+    #funtarget = 0 if funtarget is None else funtarget
+    #funTPtype = 3 if funTPtype is None else funTPtype
+    #funTPduration = 0 if funTPduration is None else funTPduration
+    #funTPintensity = 0 if funTPintensity is None else funTPintensity
+    
     if boolsend == 'True':
-        sleeptime=funduration+0.5
+        sleeptime=funduration+1.1
         print(f"sending {typesend} at {funintensity} for {funduration} seconds")
         datajson = str({"Username":USERNAME,"Name":NAME,"Code":funtarget,"Intensity":funintensity,"Duration":funduration,"Apikey":APIKEY,"Op":funtype})
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
@@ -205,7 +211,7 @@ async def loop():
         await asyncio.sleep(sleeptime)
 
     if funtouchpointstate == 'True':
-        sleeptime=funTPduration+1.7
+        sleeptime=funTPduration+0.5
         print(f"touch point sending {typeTPsend} at {funTPintensity} for {funTPduration} seconds")
         datajson = str({"Username":USERNAME,"Name":NAME,"Code":funtouchpoint,"Intensity":funTPintensity,"Duration":funTPduration,"Apikey":APIKEY,"Op":funTPtype})
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
