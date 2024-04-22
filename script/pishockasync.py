@@ -163,6 +163,7 @@ ip=config['Settings']['IP']
 port=config['Settings']['Port']
 
 async def loop():
+    #i suck at this, import all values from other functions
     global boolsend
     global verbose
     global funtype
@@ -179,9 +180,19 @@ async def loop():
     global funTPtype
     global funTPduration
     global funTPintensity
+    
+    # set default values if not set
+    funtype = 3 if funtype is None else funtype
+    funduration = 0 if funduration is None else funduration
+    funintensity = 0 if funintensity is None else funintensity
+    funtarget = 0 if funtarget is None else funtarget
+    funTPtype = 3 if funTPtype is None else funTPtype
+    funTPduration = 0 if funTPduration is None else funTPduration
+    funTPintensity = 0 if funTPintensity is None else funTPintensity
+    
     await asyncio.sleep(0.1)
     if boolsend == 'True':
-        sleeptime=funduration+1.7
+        sleeptime=funduration+0.5
         print(f"sending {typesend} at {funintensity} for {funduration} seconds")
         datajson = str({"Username":USERNAME,"Name":NAME,"Code":funtarget,"Intensity":funintensity,"Duration":funduration,"Apikey":APIKEY,"Op":funtype})
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
