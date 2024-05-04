@@ -14,14 +14,14 @@ Control pishock/OpenShock(wip) via your avatar expression menu.
 - values are now stored in an external config file, pishock.cfg
 
 # TODO
-- ~~Websocket support for pishock plus users~~ Plus is old not working on this
-- Clean up code by learning more about python
-- Verbose output, perferably toggable via the avatar menu
-- ~~Learn [animator as code](https://github.com/hai-vr/av3-animator-as-code/tree/driver-copy) to help with creating animators when adding the prefab to an avatar~~
-- Make VRCFury and Modular Avatar Prefabs
-- pishock.cfg detection and first run setup guide
-- prevent crashing of script when a touchpoint is activated and values are not properly set
-- OSCQuery support/Specify port and ip address
+- [ ] ~~Websocket support for pishock plus users~~ Plus is old not working on this
+- [ ] Clean up code by learning more about python
+- [ ] Verbose output, perferably toggable via the avatar menu
+- [ ] ~~Learn [animator as code](https://github.com/hai-vr/av3-animator-as-code/tree/driver-copy) to help with creating animators when adding the prefab to an avatar~~
+- [ ] Make VRCFury and Modular Avatar Prefabs
+- [ ] pishock.cfg detection and first run setup guide
+- [x] prevent crashing of script when a touchpoint is activated and values are not properly set
+- [ ] OSCQuery support/Specify port and ip address
 
 # Assets used
 - Smart watch made by [vibhavsuthar1998](https://www.cgtrader.com/vibhavsuthar1998) rebuilt by me from [here](https://www.cgtrader.com/free-3d-models/industrial/other/smart-watch-1c785218-a560-4d7e-8478-f9de27312be8)
