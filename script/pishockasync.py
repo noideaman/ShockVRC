@@ -200,9 +200,12 @@ async def loop():
     if boolsend == 'True':
         sleeptime=funduration+1.1
         print(f"sending {typesend} at {funintensity} for {funduration} seconds")
-        datajson = str({"Username":USERNAME,"Name":NAME,"Code":funtarget,"Intensity":funintensity,"Duration":funduration,"Apikey":APIKEY,"Op":funtype})
-        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-        sendrequest=requests.post('https://do.pishock.com/api/apioperate', data=datajson, headers=headers)
+        
+        funtargets = funtarget.split(",")
+        for target in funtargets:
+            datajson = str({"Username":USERNAME,"Name":NAME,"Code":target,"Intensity":funintensity,"Duration":funduration,"Apikey":APIKEY,"Op":funtype})
+            headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+            sendrequest=requests.post('https://do.pishock.com/api/apioperate', data=datajson, headers=headers)
 
         print(f"waiting {sleeptime} before next command")
         #print(sendrequest)
