@@ -36,7 +36,7 @@ directory_table = [
 msi_data = {
     "Directory": directory_table,
     "ProgId": [
-        ("Prog.Id", "v0.7", None, "VRChat OSC tool to control pishock shock collars", "IconId", None),
+        ("Prog.Id", "0.8.1", None, "VRChat OSC tool to control pishock shock collars", "IconId", None),
     ],
     "Icon": [
         ("IconId", "Resources\VRChatpishock.ico"),
@@ -62,7 +62,7 @@ bdist_msi_options = {
 
 # Setting for the EXE, and options for python setup.py <options>
 setup(name='ShockVRC',
-      version = 'v0.7',
+      version = '0.8.1',
       description = 'VRChat OSC tool to move the player in the direction of a stretched Physbone',
       license = "GPL-2.0",
       options = {
